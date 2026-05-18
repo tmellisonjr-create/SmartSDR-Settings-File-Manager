@@ -1,0 +1,229 @@
+<Window x:Class="SmartSDR_Settings_File_Manager.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        xmlns:vm="clr-namespace:SmartSDR_Settings_File_Manager.ViewModels"
+        Title="SmartSDR Settings File Manager"
+        ResizeMode="CanMinimize"
+        SizeToContent="WidthAndHeight"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <DockPanel Background="{Binding Background, RelativeSource={RelativeSource AncestorType=Window}}">
+
+        <!-- App title — above the menu bar -->
+        <Border DockPanel.Dock="Top" Padding="16,10,16,8">
+            <TextBlock Text="SmartSDR Settings File Manager"
+                       FontSize="20"
+                       FontWeight="SemiBold" />
+        </Border>
+
+        <!-- Menu bar -->
+        <Border DockPanel.Dock="Top"
+                Background="{DynamicResource SystemControlBackgroundChromeMediumBrush}"
+                BorderBrush="{DynamicResource SystemControlForegroundBaseLowBrush}"
+                BorderThickness="0,0,0,1">
+            <Menu Background="Transparent">
+                <MenuItem Header="Files">
+                    <MenuItem Header="Export" Command="{Binding ExportCommand}" />
+                    <MenuItem Header="Import" Command="{Binding ImportCommand}" />
+                    <Separator />
+                    <MenuItem Header="View Backup Files" Command="{Binding ViewBackupFilesCommand}" />
+                </MenuItem>
+                <MenuItem Header="About">
+                    <MenuItem Header="What is this?" Command="{Binding ShowAboutCommand}" />
+                    <MenuItem Header="Change Log" Command="{Binding ShowChangeLogCommand}" />
+                    <MenuItem Header="Warranty"   Command="{Binding ShowWarrantyCommand}" />
+                </MenuItem>
+                <MenuItem Header="Help"       Command="{Binding ShowHelpCommand}" />
+            </Menu>
+        </Border>
+
+        <StackPanel Margin="16,10,16,10">
+
+            <!-- 2 × 2 GroupBox grid — * columns stretch evenly to fill available width -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="280" />
+                    <ColumnDefinition Width="12" />
+                    <ColumnDefinition Width="280" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="12" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- ── SmartSDR (top-left) ── -->
+                <GroupBox Grid.Row="0" Grid.Column="0"
+                          Header="SmartSDR Settings">
+                    <Grid Margin="8,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" Content="Save"
+                                Command="{Binding SaveSsdrCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="Save SSDR.settings to backup folder"
+                                   Style="{StaticResource DescriptionText}" />
+
+                        <Button Grid.Row="1" Grid.Column="0" Content="Restore"
+                                Command="{Binding RestoreSsdrCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Text="Restore SSDR.settings from backup folder"
+                                   Style="{StaticResource DescriptionText}" />
+
+                        <Button Grid.Row="2" Grid.Column="0" Content="Reset"
+                                Command="{Binding ResetSsdrCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                   Text="Reset SSDR.settings to default configuration"
+                                   Style="{StaticResource DescriptionText}" />
+                    </Grid>
+                </GroupBox>
+
+                <!-- ── DAX (top-right) ── -->
+                <GroupBox Grid.Row="0" Grid.Column="2"
+                          Header="DAX Settings">
+                    <Grid Margin="8,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" Content="Save"
+                                Command="{Binding SaveDaxCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="Save DAX.settings to backup folder"
+                                   Style="{StaticResource DescriptionText}" />
+
+                        <Button Grid.Row="1" Grid.Column="0" Content="Restore"
+                                Command="{Binding RestoreDaxCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Text="Restore DAX.settings from backup folder"
+                                   Style="{StaticResource DescriptionText}" />
+
+                        <Button Grid.Row="2" Grid.Column="0" Content="Reset"
+                                Command="{Binding ResetDaxCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                   Text="Reset DAX.settings to default configuration"
+                                   Style="{StaticResource DescriptionText}" />
+                    </Grid>
+                </GroupBox>
+
+                <!-- ── CAT (bottom-left) ── -->
+                <GroupBox Grid.Row="2" Grid.Column="0"
+                          Header="CAT Settings">
+                    <Grid Margin="8,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" Content="Save"
+                                Command="{Binding SaveCatCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="Save CAT.settings to backup folder"
+                                   Style="{StaticResource DescriptionText}" />
+
+                        <Button Grid.Row="1" Grid.Column="0" Content="Restore"
+                                Command="{Binding RestoreCatCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+                                   Text="Restore CAT.settings from backup folder"
+                                   Style="{StaticResource DescriptionText}" />
+
+                        <Button Grid.Row="2" Grid.Column="0" Content="Reset"
+                                Command="{Binding ResetCatCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="2" Grid.Column="1"
+                                   Text="Reset CAT.settings to default configuration"
+                                   Style="{StaticResource DescriptionText}" />
+                    </Grid>
+                </GroupBox>
+
+                <!-- ── Optional Features (bottom-right) ── -->
+                <GroupBox Grid.Row="2" Grid.Column="2"
+                          Header="Optional Features">
+                    <Grid Margin="8,8,8,8">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="12" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Button Grid.Row="0" Grid.Column="0" Content="Clean Up"
+                                Command="{Binding CleanUpCommand}"
+                                Style="{StaticResource OperationButton}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1"
+                                   Text="Remove all settings files from backup folder"
+                                   Style="{StaticResource DescriptionText}" />
+
+                        <TextBlock Grid.Row="2" Grid.Column="0"
+                                   Text="File Prefix:"
+                                   VerticalAlignment="Center" />
+                        <TextBox Grid.Row="2" Grid.Column="1"
+                                 MaxLength="16"
+                                 Margin="12,0,0,0"
+                                 VerticalAlignment="Center"
+                                 Text="{Binding BackupFilePrefix, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Text="Optional prefix for saved file names (e.g. HomeShack). Max 16 characters."
+                                   TextWrapping="Wrap"
+                                   FontSize="11"
+                                   Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}"
+                                   Margin="0,6,0,0" />
+                    </Grid>
+                </GroupBox>
+
+            </Grid>
+
+            <!-- Status bar -->
+            <Border Background="{DynamicResource SystemControlBackgroundChromeMediumLowBrush}"
+                    CornerRadius="4"
+                    Padding="12,8"
+                    Margin="0,8,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Status: "
+                               FontWeight="SemiBold"
+                               Foreground="{DynamicResource SystemControlForegroundBaseMediumBrush}" />
+                    <TextBlock Text="{Binding StatusMessage}"
+                               Foreground="{Binding StatusColor}" />
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </DockPanel>
+</Window>

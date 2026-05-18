@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>SmartSDR_Settings_File_Manager</RootNamespace>
+    <AssemblyName>SmartSDR Settings File Manager</AssemblyName>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x64</PlatformTarget>
+    <Version>3.0.0</Version>
+    <Company>BDNI Consulting</Company>
+    <Copyright>Copyright © 2026</Copyright>
+    <ApplicationIcon>Assets\backup_and_restore_256x256.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <PackageReference Include="Ookii.Dialogs.Wpf" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\backup_and_restore_256x256.ico" />
+  </ItemGroup>
+
+</Project>
